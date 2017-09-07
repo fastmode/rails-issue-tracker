@@ -1,0 +1,17 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if current_user %>
+              <li><%= "Hello, #{current_user.email}!" %></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %></li>
+            <% else %>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>

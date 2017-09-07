@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsIssueTracker</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>RailsIssueTracker</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+</head>
+
+<body>
+
+<%= render 'layouts/header' %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
   
-    <%= yield %>
-  </body>
+  <%= yield %>
+</body>
 </html>
