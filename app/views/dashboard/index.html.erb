@@ -1,0 +1,9 @@
+
+
+
+<% if user_signed_in? %>
+  <h2>Welcome back <%= @user.email %></h2>
+<% else %>
+  <h3>Welcome to Rails Issue Tracker</h3>
+  <h5>Please Sign Up or Sign above!</h5>
+<% end %>
