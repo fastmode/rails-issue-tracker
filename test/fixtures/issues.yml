@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status: MyString
+  due_date: 2017-09-08 18:30:49
+  assigned_to: MyString
+  ticket_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  status: MyString
+  due_date: 2017-09-08 18:30:49
+  assigned_to: MyString
+  ticket_id: 1
