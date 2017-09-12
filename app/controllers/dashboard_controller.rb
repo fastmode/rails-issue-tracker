@@ -1,7 +1,10 @@
 class DashboardController < ApplicationController
 
   def index
-    @user = current_user
+    if !!current_user
+      @user = current_user
+      @tickets = @user.tickets
+    end
   end
   
 end

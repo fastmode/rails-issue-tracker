@@ -1,9 +1,10 @@
-
-
-
-<% if user_signed_in? %>
-  <h2>Welcome back <%= @user.email %></h2>
-<% else %>
+<% if !user_signed_in? %>
   <h3>Welcome to Rails Issue Tracker</h3>
-  <h5>Please Sign Up or Sign above!</h5>
+  <h5>Please Sign Up or Sign above!</h5>  
+<% else %>
+  <h2>Welcome back <%= @user.email %></h2>
+
+  <% @tickets.each do |ticket| %>
+    <li><%= link_to ticket.id, ticket_path(ticket) %> | <%= ticket.title %> | <%= ticket.status %></li>
+  <% end%>
 <% end %>

@@ -1,0 +1,7 @@
+<h3><%= @ticket.title %></h3> 
+
+<p>Issues:</p>
+
+<% @issues.each do |issue| %>
+  <li><%= issue.id %> | <%= issue.title %> | <%= issue.status %></li>
+<% end %>
