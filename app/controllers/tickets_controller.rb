@@ -18,6 +18,8 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        user_ticket = UserTicket.create(user_id: current_user.id, ticket_id: @ticket.id)
+        user_ticket.save
       else
         format.html { render :new }
       end
