@@ -1,17 +1,16 @@
 <h3><%= @ticket.title %></h3> 
 <h4>Due Date: <%= @ticket.due_date %></h4>
 <h4>Status: <%= @ticket.status %></h4>
-<p><%= link_to 'Edit Ticket', [:edit, @ticket] %></p>
-<p>
+<p><%= link_to 'Edit Ticket', [:edit, @ticket] %> | Delete Ticket</p><br>
+
 <%# Would like to add a Delete link here %>
 <%# <%= link_to 'Delete Ticket', destroy_path %>
-Delete Ticket
-</p>
+
 
 <% if !@issues.empty? %>
   <p>Issues:</p>
   <% @issues.each do |issue| %>
-    <li><%= issue.id %> | <%= issue.title %> | <%= issue.status %></li>
+    <li><%= link_to issue.id, ticket_issue_path(issue) %> | <%= issue.title %> | <%= issue.status %></li>
   <% end %>
 <% else %>
   <p>No Issues within this Ticket, please open a New Issue.</p>
