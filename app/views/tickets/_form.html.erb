@@ -1,0 +1,9 @@
+<%= form_for(@ticket) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :due_date %>
+  <%= f.date_select :due_date, order: [:day, :month, :year] %><br>
+
+  <%= f.submit %>
+<% end %>

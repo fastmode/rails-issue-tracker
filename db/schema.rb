@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908223226) do
+ActiveRecord::Schema.define(version: 20170916023351) do
 
   create_table "issues", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "status"
+    t.string "status", default: "Open"
     t.datetime "due_date"
     t.string "assigned_to"
     t.integer "ticket_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170908223226) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "title"
-    t.string "status"
+    t.string "status", default: "Open"
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
