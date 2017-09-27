@@ -1,0 +1,20 @@
+
+<%= form_for([@ticket, @issue]) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %><br>
+
+  <%= f.label :due_date %>
+  <%= f.date_select :due_date, order: [:day, :month, :year] %><br>
+
+  <%= f.label :status %>
+  <%= f.text_field :status %><br>
+
+  <%= f.label :assigned_to %>
+  <%= f.text_field :assigned_to %><br>
+  
+
+  <%= f.submit %>
+<% end %>

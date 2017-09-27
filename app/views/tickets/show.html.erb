@@ -10,8 +10,10 @@
 <% if !@issues.empty? %>
   <p>Issues:</p>
   <% @issues.each do |issue| %>
-    <li><%= link_to issue.id, ticket_issue_path(issue) %> | <%= issue.title %> | <%= issue.status %></li>
+    <li><%= link_to issue.id, ticket_issue_path(@ticket.id) %> | <%= issue.title %> | <%= issue.status %></li>
   <% end %>
 <% else %>
   <p>No Issues within this Ticket, please open a New Issue.</p>
 <% end %>
+
+<%= link_to 'Create Issue', new_ticket_issue_path(@ticket, @issue)%>
