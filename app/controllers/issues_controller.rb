@@ -11,6 +11,7 @@ class IssuesController < ApplicationController
   end 
 
   def edit
+    @ticket = Ticket.find(params[:ticket_id])
   end
 
   def create

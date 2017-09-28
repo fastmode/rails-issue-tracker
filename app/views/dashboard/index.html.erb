@@ -8,6 +8,7 @@
     <h5>Please <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Log In", new_user_session_path %>.</h5>
   <% else %>
     <h2>Welcome back, <%= @user.email %></h2><br>
+    <h3>Dashboard</h3>
     <% if !@tickets.empty? %>
       <div class="jumbotron">
         <h4>Your current tickets:</h4>

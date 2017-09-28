@@ -6,4 +6,4 @@
 <p><strong>Due Date: <%= @issue.due_date.strftime("%m/%d/%Y") %></strong></p>
 <p>Status: <%= @issue.status %></p>
 <p>Assigned To: <% @issue.assigned_to %></p>
-<p></p>
+<p><%= link_to 'Edit Ticket', edit_ticket_issue_path(@ticket, @issue), :class => 'btn btn-primary' %></p>
