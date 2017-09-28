@@ -1,6 +1,7 @@
 <%= form_for(@ticket, :html => {:class => 'form-group'}) do |f| %>
+
   <%= f.label :title %>
-  <%= f.text_field :title, :class => 'form-control' %><br>
+  <%= f.text_field :title, :class => 'form-control', :placeholder => (@ticket.errors.full_messages_for(:title).first) %><br>
 
   <%= f.label :due_date %>
   <%= f.date_select :due_date, 
