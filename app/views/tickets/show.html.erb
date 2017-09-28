@@ -4,7 +4,10 @@
       <h5>Ticket ID: <%= @ticket.id %>
       <h5>Due Date: <%= @ticket.due_date.strftime("%m/%d/%Y") %></h5>
       <h5>Status: <%= @ticket.status %></h5>
-      <p><%= link_to 'Edit Ticket', [:edit, @ticket], :class => 'btn btn-primary' %> | Delete Ticket</p><br>
+      <p>
+        <%= link_to 'Edit Ticket', [:edit, @ticket], :class => 'btn btn-primary' %>
+        <%= link_to 'Delete Ticket', ticket_path(@ticket), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger' %>
+      </p><br>
     </div>
 
       <%# Would like to add a Delete link here %>

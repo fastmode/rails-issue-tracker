@@ -1,9 +1,12 @@
-<h2><%= @ticket.title %>
+<h3><%= link_to @ticket.title, @ticket %></h3>
 <h3>Issue: <%= @issue.title %></h3>
 <p>Description: <%= @issue.description %></p>
 
 <p>Created On: <%= @issue.created_at.strftime("%m/%d/%Y") %></p>
 <p><strong>Due Date: <%= @issue.due_date.strftime("%m/%d/%Y") %></strong></p>
 <p>Status: <%= @issue.status %></p>
-<p>Assigned To: <% @issue.assigned_to %></p>
-<p><%= link_to 'Edit Ticket', edit_ticket_issue_path(@ticket, @issue), :class => 'btn btn-primary' %></p>
+<p>Assigned To: <%= @issue.assigned_to %></p>
+<p>
+  <%= link_to 'Edit Issue', edit_ticket_issue_path(@ticket, @issue), :class => 'btn btn-primary' %>
+  <%= link_to 'Delete Ticket', ticket_issue_path(@ticket, @issue), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger' %>
+</p>

@@ -37,9 +37,14 @@ class TicketsController < ApplicationController
   end
 
   def destroy
+    if !@ticket.issues.empty? 
+      @ticket.issues do |issue|
+        issue.destroy
+      end
+    end
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Ticket was successfully destroyed.' }
     end
   end
 
