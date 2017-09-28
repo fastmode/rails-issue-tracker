@@ -1,19 +1,23 @@
-<h3><%= @ticket.title %></h3> 
-<h4>Due Date: <%= @ticket.due_date %></h4>
-<h4>Status: <%= @ticket.status %></h4>
-<p><%= link_to 'Edit Ticket', [:edit, @ticket] %> | Delete Ticket</p><br>
+  <div class="row">
+    <div class="col-md-6">
+      <h3><%= @ticket.title %></h3> 
+      <h5>Due Date: <%= @ticket.due_date %></h5>
+      <h5>Status: <%= @ticket.status %></h5>
+      <p><%= link_to 'Edit Ticket', [:edit, @ticket] %> | Delete Ticket</p><br>
+    </div>
 
-<%# Would like to add a Delete link here %>
-<%# <%= link_to 'Delete Ticket', destroy_path %>
+      <%# Would like to add a Delete link here %>
+      <%# <%= link_to 'Delete Ticket', destroy_path %>
 
-
-<% if !@issues.empty? %>
-  <p>Issues:</p>
-  <% @issues.each do |issue| %>
-    <li><%= link_to issue.id, ticket_issue_path(@ticket.id) %> | <%= issue.title %> | <%= issue.status %></li>
-  <% end %>
-<% else %>
-  <p>No Issues within this Ticket, please open a New Issue.</p>
-<% end %>
-
-<%= link_to 'Create Issue', new_ticket_issue_path(@ticket, @issue)%>
+    <div class="col-md-6">
+      <% if !@issues.empty? %>
+        <h4>Issues:</h4>
+        <% @issues.each do |issue| %>
+          <%= link_to issue.id, ticket_issue_path(@ticket.id) %> - <%= issue.title %> | <%= issue.status %><br>
+        <% end %><br>
+        <%= link_to 'Add Issue', new_ticket_issue_path(@ticket, @issue)%>
+      <% else %>
+        <br><br><p>No Issues within this Ticket, please add a <%= link_to 'New Issue', new_ticket_issue_path(@ticket, @issue)%>.</p>
+      <% end %>
+    </div>
+  </div>
