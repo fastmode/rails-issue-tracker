@@ -1,16 +1,22 @@
-<% if !user_signed_in? %>
-  <h3>Welcome to Rails Issue Tracker</h3>
-  <h5>Please Sign Up or Sign In above!</h5>  
-<% else %>
-  <h2>Welcome back, <%= @user.email %></h2>
-  <% if !@tickets.empty? %>
-    <h4>Your current tickets:</h4>
-    <% @tickets.each do |ticket| %>
-      <li>
-        <%= link_to ticket.id, ticket_path(ticket) %> |
-        <%= ticket.title %> | 
-        <%= ticket.status %>
-      </li>
-    <% end%>
+
+  <% if !user_signed_in? %>
+    <h3>Welcome to Rails Issue Tracker</h3><br>
+    <div class="jumbotron">
+      <p>Rails Issue Tracker allows you to create Tickets.</p>
+      <p>Within Tickets you can create multiple Issues which you can track, assign, and set due dates to.</p>
+    </div>
+    <h5>Please <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Log In", new_user_session_path %>.</h5>
+  <% else %>
+    <h2>Welcome back, <%= @user.email %></h2><br>
+    <% if !@tickets.empty? %>
+      <div class="jumbotron">
+        <h4>Your current tickets:</h4>
+        <% @tickets.each do |ticket| %>
+          <%= link_to ticket.id, ticket_path(ticket) %> -
+          <%= ticket.title %> | 
+          <%= ticket.status %><br>
+        <% end%><br>
+      </div>
+    <% end %>
+    <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
   <% end %>
-<% end %>
