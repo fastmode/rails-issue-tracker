@@ -15,7 +15,7 @@
   %><br>
 
   <%= f.label :status %>
-  <%= f.text_field :status, :class => 'form-control' %><br>
+  <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br>
 
   <%= f.label :assigned_to %>
   <%= f.text_field :assigned_to, :class => 'form-control' %><br>
