@@ -1,13 +1,24 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?
 
   def new
     @ticket = Ticket.new
   end
 
+# Need code to determine that logged in user can only see their tickets
+# b = UserTicket.find_by(ticket_id: params[:id]).user_id
+# current_user.id == b.user_id
+# && current_usera
+
   def show
-    @ticket = Ticket.find(params[:id])
-    @issues = @ticket.issues
+    # binding.pry
+    if user_owns_ticket?
+      @ticket = Ticket.find(params[:id])
+      @issues = @ticket.issues
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -49,9 +60,13 @@ class TicketsController < ApplicationController
   end
 
   private
-   def set_ticket
-     @ticket = Ticket.find(params[:id])
-   end
+    def set_ticket
+      if @ticket = Ticket.find_by(id: params[:id])
+        @ticket
+      else
+        redirect_to root_path
+      end
+    end
 
    def ticket_params
      params.require(:ticket).permit(

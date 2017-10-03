@@ -1,6 +1,8 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
   before_action :set_ticket_id
+  before_action :logged_in?
+
   def new
     @issue = Issue.new
   end
@@ -59,5 +61,6 @@ class IssuesController < ApplicationController
         :assigned_to
       )
     end
-    
+
+
 end
