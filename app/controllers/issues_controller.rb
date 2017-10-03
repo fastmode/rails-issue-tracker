@@ -2,6 +2,7 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
   before_action :set_ticket_id
   before_action :logged_in?
+  before_action :authenticate_user!
 
   def new
     @issue = Issue.new
@@ -44,23 +45,21 @@ class IssuesController < ApplicationController
 
   private
 
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
 
-    def set_ticket_id
-      @ticket = Ticket.find(params[:ticket_id])
-    end
+  def set_ticket_id
+    @ticket = Ticket.find(params[:ticket_id])
+  end
 
-    def issue_params
-      params.require(:issue).permit(
-        :title,
-        :description,
-        :status,
-        :due_date,
-        :assigned_to
-      )
-    end
-
-
+  def issue_params
+    params.require(:issue).permit(
+      :title,
+      :description,
+      :status,
+      :due_date,
+      :assigned_to
+    )
+  end
 end

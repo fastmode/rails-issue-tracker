@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'jquery'
 gem 'bootstrap-sass'
+gem 'omniauth'
+gem 'omniauth-github'
 
 
 # Use Capistrano for deployment
