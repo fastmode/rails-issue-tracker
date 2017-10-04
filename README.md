@@ -16,6 +16,8 @@ A simple app giving you the ability to document Tickets and add Issues.  You can
 
 ## Contributions
 
+Fork the repo and create pull requests. All are welcome and appreciate.
+
 ## License
 
 MIT standard license. See `LICENSE`
