@@ -1,2 +1,21 @@
-# rails-issue-tracker
-Rails Issue Tracker
+# Rails Issue Tracker
+
+A simple app giving you the ability to document Tickets and add Issues.  You can track issue details, status, and descriptions.  Reports provide you with information on Overdue and Closed tickets.
+
+## Requirements
+
+* Ruby version: 2.3
+* Configuration: modify files in `config`
+* Database creation: `rake db:migrate`
+
+## Deployment instructions:
+
+1. Fork and clone the repo
+2. Migrate and seed the database
+3. Run `rails s` or configure rails on the server of your choice
+
+## Contributions
+
+## License
+
+MIT standard license. See `LICENSE`
