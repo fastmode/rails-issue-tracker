@@ -1,0 +1,22 @@
+<h3>Reports</h3>
+<%# if !@tickets.empty? %>
+  <div class="jumbotron">
+    <div>
+      <h4>Overdue Tickets</h4>
+      <% @overdue_tickets.each do |ticket| %>
+        <%= link_to ticket.id, ticket_path(ticket) %> -
+        <%= ticket.title %> | 
+        Due <%= ticket.due_date.strftime("%m/%d/%Y") %><br>
+      <% end%><br>
+    </div>
+    <div>
+      <h4>Closed Tickets</h4>
+      <% @closed_tickets.each do |ticket| %>
+        <%= link_to ticket.id, ticket_path(ticket) %> -
+        <%= ticket.title %> | 
+        <%= ticket.status %> on <%= ticket.updated_at.strftime("%m/%d/%Y") %><br>
+      <% end%><br>
+    </div>
+  </div>
+<%# end %>
+<%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>

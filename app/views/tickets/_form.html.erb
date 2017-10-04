@@ -11,5 +11,8 @@
     {:class => "form-control"} 
   %><br>
 
+  <%= f.label :status %>
+  <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br>
+
   <%= f.submit :class => 'btn btn-default' %>
 <% end %>
