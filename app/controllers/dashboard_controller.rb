@@ -10,7 +10,6 @@ class DashboardController < ApplicationController
   def show
     @closed_tickets = Ticket.closed
     @overdue_tickets = current_user.tickets.overdue_tickets    
-    binding.pry
   end
   
 end

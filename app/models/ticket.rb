@@ -5,6 +5,7 @@ class Ticket < ApplicationRecord
 
   scope :closed, -> { where(status: 'Closed') }
 
+  # Possibly refactor this to look like above scope code.  Need to figure out how to use < > AND.
   def self.overdue_tickets
     where("due_date < ? AND status = ?", Date.today, "Open")
   end
