@@ -8,8 +8,9 @@ class DashboardController < ApplicationController
   end
 
   def show
-    @closed_tickets = current_user.tickets.where("status = ?", "Closed")
-    @overdue_tickets = current_user.tickets.where("due_date < ? AND status = ?", Date.today, "Open")
+    @closed_tickets = Ticket.closed
+    @overdue_tickets = current_user.tickets.overdue_tickets    
+    binding.pry
   end
   
 end
