@@ -3,6 +3,13 @@ class Ticket < ApplicationRecord
   has_many :issues
   validates :title, presence: true
 
+  def issues_attributes=(issues_attributes)
+    issues_attributes.values.each do |issue_attribute|
+      issue = Issue.find_or_create_by(issue_attribute)
+      self.issues << issue
+    end
+  end
+
   scope :closed, -> { where(status: 'Closed') }
 
   # Possibly refactor this to look like above scope code.  Need to figure out how to use < > AND.

@@ -69,7 +69,13 @@ class TicketsController < ApplicationController
     params.require(:ticket).permit(
       :title,
       :status,
-      :due_date
+      :due_date,
+      issues_attributes: [
+        :title,
+        :description,
+        :status,
+        :due_date,
+        :assigned_to]
     )
   end
 end
