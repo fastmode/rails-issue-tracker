@@ -9,20 +9,8 @@
   <% else %>
     <h2>Welcome back, <%= @user.email %></h2><br>
     <h3>Dashboard</h3>
-    <% if !@tickets.empty? %>
-      <div class="jumbotron">
-        <div>
-          <h4>Your current open tickets:</h4>
-          <% @tickets.each do |ticket| %>
-            <%= link_to ticket.id, ticket_path(ticket) %> -
-            <%= ticket.title %><br>
-          <% end%><br>
-        </div>
-        <div>
-          <h4>Reports</h4>
-          <%= link_to 'Closed and Overdue Tickets', reports_closed_overdue_tickets_path %>
-        </div>
-      </div>
-    <% end %>
+    
+    <%= render 'jumbotron' %>
+
     <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
   <% end %>

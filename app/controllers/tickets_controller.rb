@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        format.html { redirect_to @ticket }
         user_ticket = UserTicket.create(user_id: current_user.id, ticket_id: @ticket.id)
         user_ticket.save
       else
@@ -36,7 +36,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to @ticket }
       else
         format.html { render :edit }
       end
@@ -51,7 +51,7 @@ class TicketsController < ApplicationController
     end
     @ticket.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Ticket was successfully destroyed.' }
+      format.html { redirect_to root_path}
     end
   end
 
@@ -72,10 +72,7 @@ class TicketsController < ApplicationController
       :due_date,
       issues_attributes: [
         :title,
-        :description,
-        :status,
-        :due_date,
-        :assigned_to]
+        :description]
     )
   end
 end

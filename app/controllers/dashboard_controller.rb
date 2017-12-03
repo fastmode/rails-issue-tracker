@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   def index
     if !!current_user
       @user = current_user
-      @tickets = @user.tickets.where("status = ?", "Open")
+      @tickets = @user.tickets.open
     end
   end
 

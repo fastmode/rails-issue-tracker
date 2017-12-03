@@ -11,16 +11,6 @@
     {:class => "form-control"} 
   %><br>
 
-  <div class="jumbotron">
-    <p>Add an Issue</p>
-    <%= f.fields_for :issues, @ticket.issues.build do |i| %>
-      <%= i.label "Issue Name" %>
-      <%= i.text_field :title, :class => 'form-control' %><br>
-      <%= i.label :description %>
-      <%= i.text_area :description, :class => 'form-control' %><br>
-    <% end %>    
-  </div>
-
   <%= f.label :status %>
   <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br><br>
 
