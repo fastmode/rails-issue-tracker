@@ -12,4 +12,8 @@
       <%= link_to 'Closed and Overdue Tickets', reports_closed_overdue_tickets_path %>
     </div>
   </div>
+<% else %>
+  <div class="jumbotron">
+    <p>Welcome! Please open your first Ticket.</p>
+  </div>
 <% end %>
