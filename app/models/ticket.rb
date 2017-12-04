@@ -5,8 +5,8 @@ class Ticket < ApplicationRecord
 
   def issues_attributes=(issues_attributes)
     issues_attributes.values.each do |issue_attribute|
-      issue = Issue.find_or_create_by(issue_attribute)
-      self.issues << issue
+      @issue = Issue.create(issue_attribute)
+      self.issues << @issue
     end
   end
 
