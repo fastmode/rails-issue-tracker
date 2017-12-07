@@ -11,6 +11,11 @@
     {:class => "form-control"} 
   %><br>
 
+  <%= f.fields_for :user_tickets, @ticket.user_tickets.build do |i| %>
+    <%= i.label :location %>
+    <%= i.select :location, ["Canada", "USA", "Mexico"], :class => 'form-control' %><br><br>
+  <% end %>
+  
   <%= f.label :status %>
   <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br><br>
 
