@@ -60,7 +60,6 @@ class TicketsController < ApplicationController
     if @ticket = Ticket.find_by(id: params[:id])
       @ticket
       @user_ticket = UserTicket.find_by(ticket_id: @ticket.id)
-      # binding.pry
     else
       redirect_to root_path
     end
@@ -74,15 +73,11 @@ class TicketsController < ApplicationController
       issues_attributes: [
         :title,
         :description]
-      # user_tickets_attributes: [
-      #   :user_id,
-      #   :ticket_id,
-      #   :location
-      # ]
     )
   end
 
   def set_location
     params["ticket"]["user_tickets"]["location"]
   end
+  
 end
