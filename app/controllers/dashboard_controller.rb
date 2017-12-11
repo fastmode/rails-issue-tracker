@@ -11,5 +11,9 @@ class DashboardController < ApplicationController
     @closed_tickets = Ticket.closed
     @overdue_tickets = current_user.tickets.overdue_tickets    
   end
+
+  def usa
+    @usa_tickets = UserTicket.usa
+  end
   
 end

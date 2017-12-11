@@ -1,0 +1,12 @@
+<h3>Reports</h3>
+<div class="jumbotron">
+  <div>
+    <h4>USA Tickets</h4>
+    <% @usa_tickets.each do |usa_ticket| %>
+      <%= link_to usa_ticket.id, ticket_path(usa_ticket) %> -
+      <%= usa_ticket.ticket.title %> | 
+      Due <%= usa_ticket.ticket.due_date.strftime("%m/%d/%Y") %><br>
+    <% end%><br>
+  </div>
+</div>
+<%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
