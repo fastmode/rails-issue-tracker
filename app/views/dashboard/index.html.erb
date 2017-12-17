@@ -10,7 +10,7 @@
     <h2>Hi, <%= @user.email %>!</h2><br>
     <h3>Dashboard</h3>
     
-    <%= render 'jumbotron' %>
+    <%= render :partial => 'dashboard/jumbotron' %>
 
     <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
   <% end %>

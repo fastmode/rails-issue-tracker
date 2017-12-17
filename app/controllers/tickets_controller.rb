@@ -7,6 +7,17 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
+  def index
+    if !!current_user
+      @user = current_user
+      @tickets = @user.tickets.open
+      respond_to do |format|
+        format.html { render 'dashboard/index' }
+        format.json { render json: @tickets.to_json }
+      end
+    end
+  end
+
   def show
     if user_owns_ticket?
       @ticket = Ticket.find(params[:id])
