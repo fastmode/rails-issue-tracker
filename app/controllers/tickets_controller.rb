@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
       @issues = @ticket.issues
       respond_to do |format|
         format.html { render :show }
-        format.json { render json: @issues.to_json }
+        format.json { render json: @issues }
       end
     else
       redirect_to root_path
