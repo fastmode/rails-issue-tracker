@@ -34,6 +34,7 @@ gem 'jquery'
 gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'active_model_serializers'
 
 
 # Use Capistrano for deployment
