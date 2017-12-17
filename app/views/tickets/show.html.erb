@@ -15,9 +15,14 @@
       <div class="jumbotron">
         <% if !@issues.empty? %>
           <h4>Issues:</h4>
-          <% @issues.each do |issue| %>
-            <%= link_to issue.id, ticket_issue_path(@ticket, issue) %> - <%= issue.title %> | <%= issue.status %><br>
-          <% end %><br>
+          <ul class="list-group">
+            <% @issues.each do |issue| %>
+            <li class="list-group-item">
+              <span class="badge"><%= issue.status %></span>
+              <%= link_to issue.title, ticket_issue_path(@ticket, issue) %>
+            </li>
+            <% end %><br>
+          </ul>
           <%= link_to 'Add Issue', new_ticket_issue_path(@ticket, @issue), :class => 'btn btn-success'%>
         <% else %>
           <br><br><p>No Issues within this Ticket, please add a <%= link_to 'New Issue', new_ticket_issue_path(@ticket, @issue)%>.</p>
