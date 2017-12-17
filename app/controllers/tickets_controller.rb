@@ -11,6 +11,10 @@ class TicketsController < ApplicationController
     if user_owns_ticket?
       @ticket = Ticket.find(params[:id])
       @issues = @ticket.issues
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @issues.to_json }
+      end
     else
       redirect_to root_path
     end
