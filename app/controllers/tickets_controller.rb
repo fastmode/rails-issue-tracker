@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
       @tickets = @user.tickets.open
       respond_to do |format|
         format.html { render 'dashboard/index' }
-        format.json { render json: @tickets.to_json }
+        format.json { render json: @tickets }
       end
     end
   end

@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
       @tickets = @user.tickets.open
       respond_to do |format|
         format.html { render :index }
-        format.json { render json: @tickets.to_json }
+        format.json { render json: @tickets }
       end
     end
   end
