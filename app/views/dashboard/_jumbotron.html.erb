@@ -2,14 +2,17 @@
   <div class="jumbotron">
     <div>
       <h4>Your current open tickets:</h4>
-      <% @tickets.each do |ticket| %>
-        <%= link_to ticket.id, ticket_path(ticket) %> -
-        <%= ticket.title %><br>
-      <% end%><br>
+      <ul class="list-group">
+        <% @tickets.each do |ticket| %>
+          <li class="list-group-item">
+            <span class="badge"><%= ticket.issues.size %></span>
+            <%= link_to ticket.title, ticket_path(ticket)%>
+          </li>
+        <% end%><br>
+      </ul>
     </div>
-    <div>
-
-    </div>
+    
+    <div></div>
   </div>
 <% else %>
   <div class="jumbotron">
