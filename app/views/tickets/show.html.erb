@@ -48,10 +48,17 @@
         $(".ticketLocation").text(data["user_tickets"][0]["location"]);
         $(".ticketStatus").text(data["status"]);
         $("#js-next").attr("data-id", data["id"]);
-        window.history.replaceState( {}, null, `${data["id"]}`)  // Updates browser URL to visible Ticket
+        window.history.replaceState( {}, null, `${data["id"]}`);  // Updates browser URL to visible Ticket
 
-        // *** Need to figure out how to update Edit and Delete Tickets after Next is pressed.
+        // Edit and Delete Tickets button attributes are updated when Next Ticket is pressed.
         $("#edit-ticket-button").attr("href", `/tickets/${data["id"]}/edit`);
+        $("#delete-ticket-button").attr({
+          "data-confirm": "Are you sure?",
+          "class": "btn btn-danger btn-xs", 
+          "rel": "nofollow",
+          "data-method": "delete",
+          "href": `/tickets/${data["id"]}`
+        });
         
         //$(".ticketButtons").text("")
         //<a data-confirm="Are you sure?" class="btn btn-danger btn-xs" id="delete-ticket-button" rel="nofollow" data-method="delete" href="/tickets/1">Delete Ticket</a>
