@@ -22,7 +22,7 @@
           <% @issues.each do |issue| %>
           <li class="list-group-item">
             <span class="badge"><%= issue.status %></span>
-            <%= link_to issue.title, ticket_issue_path(@ticket, issue), :class => "ticketIssues"%>
+            <%= link_to issue.title, ticket_issue_path(@ticket, issue)%>
           </li>
           <% end %><br>
         </ul>
@@ -49,6 +49,7 @@
         $(".ticketStatus").text(data["status"]);
         $("#js-next").attr("data-id", data["id"]);
         window.history.replaceState( {}, null, `${data["id"]}`)  // Updates browser URL to visible Ticket
+
         // *** Need to figure out how to update Edit and Delete Tickets after Next is pressed.
      
         // Updates Issues information after "Next Ticket" is clicked.
@@ -56,10 +57,11 @@
         data["issues"].forEach(function(el) {
           var li = document.createElement('li');
           li.setAttribute('class', 'list-group-item')
-          li.innerHTML = `<span class="badge">${el["status"]}</span>${el["title"]}`;
+          li.innerHTML = `<span class="badge">${el["status"]}</span><a href="/tickets/${el["ticket_id"]}/issues/${el["id"]}">${el["title"]}</a>`;
           $(".list-group").append(li);
-          // *** Need to figure out hwo to update the Add Issue button when Next Ticket is pressed"
         });
+        
+        // *** Need to figure out hwo to update the Add Issue button when Next Ticket is pressed"
       });
     });
   });
