@@ -36,9 +36,18 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $(".js-next").on("click", function() {
-      var nextId = parseInt($(".js.next").attr("data-id")) + 1;
-      debugger
+    $("#js-next").on("click", function() {
+      var nextId = parseInt($("#js-next").attr("data-id")) + 1;
+      $.getJSON(`/tickets/${nextId}`, function(data){
+        $(".ticketTitle").text(data["title"]);
+        $(".ticketId").text(`Ticket ID: ${data["id"]}`);
+        var date = new Date(data["due_date"])
+        $(".ticketDueDate").text(`Due Date: ${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`);
+      
+        // Need to add serializer for Location: $(".ticketLocation").text(data["title"]);
+        $(".ticketStatus").text(`Status: ${data["status"]}`);
+        $("#js-next").attr("data-id", data["id"]);
+      })
     })
   })
 </script>
