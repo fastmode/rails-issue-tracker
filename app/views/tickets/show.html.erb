@@ -3,11 +3,11 @@
     <button type="button" class="btn pull-right btn-default btn-xs" id="js-next" data-id="<%=@ticket.id%>">
       Next Ticket <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     </button>
-    <h3 class="ticketTitle"><%= @ticket.title %></h3>
-    <h5 class="ticketId">Ticket ID: <%= @ticket.id %>
-    <h5 class="ticketDueDate">Due Date: <%= @ticket.due_date.strftime("%m/%d/%Y") %></h5>
-    <h5 class="ticketLocation">Location: <%= @user_ticket.location %>
-    <h5 class="ticketStatus">Status: <%= @ticket.status %></h5>
+    <h3><span class="ticketTitle"><%= @ticket.title %></span></h3>
+    <h5>Ticket ID: <span class="ticketId"><%= @ticket.id %></span></h5>
+    <h5>Due Date: <span class="ticketDueDate"><%= @ticket.due_date.strftime("%m/%d/%Y") %></span></h5>
+    <h5>Location: <span class="ticketLocation"><%= @user_ticket.location %></span></h5>
+    <h5>Status: <span class="ticketStatus"><%= @ticket.status %></span></h5>
     <p>
       <%= link_to 'Edit Ticket', [:edit, @ticket], :class => 'btn btn-primary btn-xs' %>
       <%= link_to 'Delete Ticket', ticket_path(@ticket), data: { confirm: 'Are you sure?' }, method: :delete, :class => 'btn btn-danger btn-xs' %>
@@ -40,12 +40,12 @@
       var nextId = parseInt($("#js-next").attr("data-id")) + 1;
       $.getJSON(`/tickets/${nextId}`, function(data){
         $(".ticketTitle").text(data["title"]);
-        $(".ticketId").text(`Ticket ID: ${data["id"]}`);
+        $(".ticketId").text(data["id"]);
         var date = new Date(data["due_date"])
-        $(".ticketDueDate").text(`Due Date: ${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`);
+        $(".ticketDueDate").text(`${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`);
       
         // Need to add serializer for Location: $(".ticketLocation").text(data["title"]);
-        $(".ticketStatus").text(`Status: ${data["status"]}`);
+        $(".ticketStatus").text(data["status"]);
         $("#js-next").attr("data-id", data["id"]);
       })
     })
