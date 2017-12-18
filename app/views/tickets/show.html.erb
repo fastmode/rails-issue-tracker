@@ -43,8 +43,7 @@
         $(".ticketId").text(data["id"]);
         var date = new Date(data["due_date"])
         $(".ticketDueDate").text(`${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`);
-      
-        // Need to add serializer for Location: $(".ticketLocation").text(data["title"]);
+        $(".ticketLocation").text(data["user_tickets"][0]["location"]);
         $(".ticketStatus").text(data["status"]);
         $("#js-next").attr("data-id", data["id"]);
       })
