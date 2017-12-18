@@ -22,7 +22,7 @@
           <% @issues.each do |issue| %>
           <li class="list-group-item">
             <span class="badge"><%= issue.status %></span>
-            <%= link_to issue.title, ticket_issue_path(@ticket, issue) %>
+            <%= link_to issue.title, ticket_issue_path(@ticket, issue), :class => "ticketIssues"%>
           </li>
           <% end %><br>
         </ul>
@@ -39,6 +39,7 @@
     $("#js-next").on("click", function() {
       var nextId = parseInt($("#js-next").attr("data-id")) + 1;
       $.getJSON(`/tickets/${nextId}`, function(data){
+        // Updates Ticket information after "Next Ticket" is clicked
         $(".ticketTitle").text(data["title"]);
         $(".ticketId").text(data["id"]);
         var date = new Date(data["due_date"])
@@ -46,7 +47,25 @@
         $(".ticketLocation").text(data["user_tickets"][0]["location"]);
         $(".ticketStatus").text(data["status"]);
         $("#js-next").attr("data-id", data["id"]);
-      })
-    })
-  })
+        window.history.replaceState( {}, null, `${data["id"]}`)  // Updates browser URL to visible Ticket
+        // *** Need to figure out how to update Edit and Delete Tickets after Next is pressed.
+     
+        // Updates Issues information after "Next Ticket" is clicked.
+        $(".list-group").text("")
+        data["issues"].forEach(function(el) {
+          var li = document.createElement('li');
+          // var span = document.createElement('span')
+          li.innerHTML = `<span class="badge">${el["status"]}</span>${el["title"]}`;
+          // span.textContent = el["status"]
+          
+          li.setAttribute('class', 'list-group-item')
+          // span.setAttribute('class', 'badge')
+          $(".list-group").append(li);
+          // $(".list-group-item").append(span)          
+          // $(".list-group").append($(document.createElement('li')).text(el["title"]));
+        });
+      });
+    });
+  });
 </script>
+
