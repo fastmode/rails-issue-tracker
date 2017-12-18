@@ -1,16 +1,15 @@
+<% if !user_signed_in? %>
+  <h3>Welcome to Rails Issue Tracker</h3><br>
+  <div class="jumbotron">
+    <p>Rails Issue Tracker allows you to create Tickets.</p>
+    <p>Within Tickets you can create multiple Issues which you can track, assign, and set due dates to.</p>
+  </div>
+  <h5>Please <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Log In", new_user_session_path %>.</h5>
+<% else %>
+  <h2>Hi, <%= @user.email %>!</h2><br>
+  <h3>Dashboard</h3>
+  
+  <%= render :partial => 'dashboard/jumbotron' %>
 
-  <% if !user_signed_in? %>
-    <h3>Welcome to Rails Issue Tracker</h3><br>
-    <div class="jumbotron">
-      <p>Rails Issue Tracker allows you to create Tickets.</p>
-      <p>Within Tickets you can create multiple Issues which you can track, assign, and set due dates to.</p>
-    </div>
-    <h5>Please <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Log In", new_user_session_path %>.</h5>
-  <% else %>
-    <h2>Hi, <%= @user.email %>!</h2><br>
-    <h3>Dashboard</h3>
-    
-    <%= render :partial => 'dashboard/jumbotron' %>
-
-    <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
-  <% end %>
+  <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-success' %>
+<% end %>
