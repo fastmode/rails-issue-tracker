@@ -39,6 +39,7 @@
     $("#js-next").on("click", function() {
       var nextId = parseInt($("#js-next").attr("data-id")) + 1;
       $.getJSON(`/tickets/${nextId}`, function(data){
+
         // Updates Ticket information after "Next Ticket" is clicked
         $(".ticketTitle").text(data["title"]);
         $(".ticketId").text(data["id"]);
@@ -51,18 +52,13 @@
         // *** Need to figure out how to update Edit and Delete Tickets after Next is pressed.
      
         // Updates Issues information after "Next Ticket" is clicked.
-        $(".list-group").text("")
+        $(".list-group").text("")  // Clears out visible issues.
         data["issues"].forEach(function(el) {
           var li = document.createElement('li');
-          // var span = document.createElement('span')
-          li.innerHTML = `<span class="badge">${el["status"]}</span>${el["title"]}`;
-          // span.textContent = el["status"]
-          
           li.setAttribute('class', 'list-group-item')
-          // span.setAttribute('class', 'badge')
+          li.innerHTML = `<span class="badge">${el["status"]}</span>${el["title"]}`;
           $(".list-group").append(li);
-          // $(".list-group-item").append(span)          
-          // $(".list-group").append($(document.createElement('li')).text(el["title"]));
+          // *** Need to figure out hwo to update the Add Issue button when Next Ticket is pressed"
         });
       });
     });
