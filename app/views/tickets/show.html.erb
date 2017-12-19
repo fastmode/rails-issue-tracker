@@ -26,7 +26,7 @@
           </li>
           <% end %>
         </ul>
-        <%= link_to 'Add Issue', new_ticket_issue_path(@ticket, @issue), :class => 'btn btn-success', :id => 'add-issue-button'%>
+        <%= link_to 'Add Issue', new_ticket_issue_path(@ticket, @issue), :class => 'btn btn-sm pull-right btn-success', :id => 'add-issue-button'%>
       <% else %>
         <br><br><p>No Issues within this Ticket, please add a <%= link_to 'New Issue', new_ticket_issue_path(@ticket, @issue)%>.</p>
       <% end %>
@@ -60,7 +60,7 @@
         <%= f.label :assigned_to %>
         <%= f.text_field :assigned_to, :class => 'form-control' %><br>
         
-        <%= f.submit :class => 'btn btn-default'%>
+        <%= f.submit :class => 'btn btn-sm pull-right btn-success'%>
       <% end %>
     </div>
   </div>
