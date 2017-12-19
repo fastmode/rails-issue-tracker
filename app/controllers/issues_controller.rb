@@ -15,14 +15,12 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = Issue.new(issue_params)
+    @issue = Issue.create(issue_params)
     @issue.ticket_id = @ticket.id
-    respond_to do |format|
-      if @issue.save
-        format.html { redirect_to @ticket, notice: 'Issue was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @issue.save
+      render json: @issue, status: 201
+    else
+      format.html { render :new }
     end
   end
 

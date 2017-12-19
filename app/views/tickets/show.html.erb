@@ -18,13 +18,13 @@
     <div class="jumbotron">
       <% if !@issues.empty? %>
         <h4>Issues:</h4>
-        <ul class="list-group">
+        <ul class="list-group" id="issue-list">
           <% @issues.each do |issue| %>
           <li class="list-group-item">
             <span class="badge"><%= issue.status %></span>
             <%= link_to issue.title, ticket_issue_path(@ticket, issue)%>
           </li>
-          <% end %><br>
+          <% end %>
         </ul>
         <%= link_to 'Add Issue', new_ticket_issue_path(@ticket, @issue), :class => 'btn btn-success', :id => 'add-issue-button'%>
       <% else %>
@@ -33,3 +33,54 @@
     </div>
   </div>
 </div>
+
+<div class="row" id="new-issue-section">
+  <div class="col-md-6"></div>
+  <div class="col-md-6"><br>
+    <div class="jumbotron" >
+      <h3>New Issue</h3>
+      <%= form_for([@ticket, @issue], :html => {:class => 'form-group'}) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => 'form-control', :placeholder => (@issue.errors.full_messages_for(:title).first) %><br>
+
+        <%= f.label :description %>
+        <%= f.text_area :description, :class => 'form-control' %><br>
+
+        <%= f.label :due_date %>
+        <%= f.date_select :due_date, 
+          {order: [:month, :day, :year],
+          start_year: 2017,
+          end_year: 2100},
+          {:class => "form-control"} 
+        %><br>
+
+        <%= f.label :status %>
+        <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br>
+
+        <%= f.label :assigned_to %>
+        <%= f.text_field :assigned_to, :class => 'form-control' %><br>
+        
+        <%= f.submit :class => 'btn btn-default'%>
+      <% end %>
+    </div>
+  </div>
+</div> 
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event){
+      event.preventDefault();
+      var values = $(this).serialize();
+      var action = $('form').attr("action");
+      var posting = $.post(action, values);
+
+      posting.done(function(data) {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'list-group-item')
+        li.innerHTML = `<span class="badge">${data["status"]}</span><a href="/tickets/${data["ticket_id"]}/issues/${data["id"]}">${data["title"]}</a>`;
+        $(".list-group").append(li);
+      });
+      $("#new-issue-section").text("") 
+    });
+  });
+</script>

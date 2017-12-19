@@ -21,6 +21,7 @@ class TicketsController < ApplicationController
   def show
     if user_owns_ticket?
       @ticket = Ticket.find(params[:id])
+      @issue = Issue.new
       @issues = @ticket.issues
       respond_to do |format|
         format.html { render :show }
@@ -35,14 +36,10 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = Ticket.create(ticket_params)
     respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket }
-        UserTicket.create(user_id: current_user.id, ticket_id: @ticket.id, location: set_location)
-      else
-        format.html { render :new }
-      end
+      format.html { redirect_to @ticket }
+      UserTicket.create(user_id: current_user.id, ticket_id: @ticket.id, location: set_location)
     end
   end
 
