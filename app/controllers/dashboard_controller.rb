@@ -5,8 +5,8 @@ class DashboardController < ApplicationController
       @user = current_user
       @tickets = @user.tickets.open
       respond_to do |format|
-        format.html { render :index }
         format.json { render json: @tickets }
+        format.html { render :index }
       end
     end
   end

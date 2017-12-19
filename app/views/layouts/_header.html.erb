@@ -8,12 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a class="navbar-brand" href="<%= root_url %>"/>Rails Issue Tracker</a>
+    <a class="navbar-brand" href="<%= root_path %>"/>Rails Issue Tracker</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><%= link_to "Dashboard", root_path %></li>
+          <li><%= link_to "Dashboard", tickets_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
             <ul class="dropdown-menu">
