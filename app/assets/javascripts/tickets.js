@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function() {
+
+  // Next Ticket button functionality
   $(function () {
     $("#js-next").on("click", function() {
       var nextId = parseInt($("#js-next").attr("data-id")) + 1;
@@ -38,4 +40,35 @@ $(document).on('turbolinks:load', function() {
       });
     });
   });
+
+  // New Issue Form is Serialized and Posted.  New Issue Section is cleared out.
+  $(function () {
+    $("#add-issue-button").on("click", function(e) {
+      $addIssueButton = $("a#add-issue-button")
+      $("a#add-issue-button").remove();               // Removes the Add Issue button
+      
+      $.get(this.href).success(function(response) {   // Goes out and grabs HTML from this.href
+        $("#new-issue-form").html(response);          // Add the New Issue Form to #new-issue-form element in HTML
+        
+        // New Issue Form is loaded and adds new Issue to <li> after Submitted.
+        $('form').submit(function(e){
+          var values = $(this).serialize();
+          var action = $('form').attr("action");
+          var posting = $.post(action, values);
+
+          posting.done(function(data) {
+            var li = document.createElement('li');
+            li.setAttribute('class', 'list-group-item')
+            li.innerHTML = `<span class="badge">${data["status"]}</span><a href="/tickets/${data["ticket_id"]}/issues/${data["id"]}">${data["title"]}</a>`;
+            $(".list-group").append(li);                  // Append new issue to <li>
+            $("div.jumbotron").append($addIssueButton);   // Append the Add Issue back 
+          });
+          $("#new-issue-section").text("")                //clears out New Issue form html
+          e.preventDefault(); 
+        });
+      });
+      e.preventDefault();
+    });
+  });
+
 });
