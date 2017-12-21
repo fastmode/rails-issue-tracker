@@ -5,6 +5,7 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
+    render 'new', layout: false
   end
 
   def index
@@ -13,7 +14,7 @@ class TicketsController < ApplicationController
       @tickets = @user.tickets.open
       respond_to do |format|
         format.html { render 'dashboard/index' }
-        format.json { render json: @tickets }
+        format.json { render json: @tickets, layout: false }
       end
     end
   end
@@ -25,7 +26,7 @@ class TicketsController < ApplicationController
       @issues = @ticket.issues
       respond_to do |format|
         format.html { render :show }
-        format.json { render json: @ticket }
+        format.json { render json: @ticket, layout: false }
       end
     else
       redirect_to root_path
