@@ -6,6 +6,7 @@ class IssuesController < ApplicationController
 
   def new
     @issue = Issue.new
+    render 'new', layout: false
   end
 
   def show
@@ -20,7 +21,7 @@ class IssuesController < ApplicationController
     if @issue.save
       render json: @issue, status: 201
     else
-      format.html { render :new }
+      redirect_to @ticket, notice: 'Please fill form out completely.'
     end
   end
 

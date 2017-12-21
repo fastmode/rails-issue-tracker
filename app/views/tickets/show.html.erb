@@ -1,3 +1,5 @@
+<span class="notice"><%= notice %></span>
+<span class="alert"><%= alert %></span>
 <div class="row">
   <div class="col-md-6">
     <button type="button" class="btn pull-right btn-default btn-xs" id="js-next" data-id="<%=@ticket.id%>">
@@ -36,51 +38,46 @@
 
 <div class="row" id="new-issue-section">
   <div class="col-md-6"></div>
-  <div class="col-md-6"><br>
-    <div class="jumbotron" >
-      <h3>New Issue</h3>
-      <%= form_for([@ticket, @issue], :html => {:class => 'form-group'}) do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title, :class => 'form-control', :placeholder => (@issue.errors.full_messages_for(:title).first) %><br>
+  <div class="col-md-6" id="new-issue-form"><br>
 
-        <%= f.label :description %>
-        <%= f.text_area :description, :class => 'form-control' %><br>
-
-        <%= f.label :due_date %>
-        <%= f.date_select :due_date, 
-          {order: [:month, :day, :year],
-          start_year: 2017,
-          end_year: 2100},
-          {:class => "form-control"} 
-        %><br>
-
-        <%= f.label :status %>
-        <%= f.select :status, ["Open", "In Progress", "Closed"], :class => 'form-control' %><br>
-
-        <%= f.label :assigned_to %>
-        <%= f.text_field :assigned_to, :class => 'form-control' %><br>
-        
-        <%= f.submit :class => 'btn btn-sm pull-right btn-success'%>
-      <% end %>
-    </div>
   </div>
 </div> 
 
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event){
-      event.preventDefault();
-      var values = $(this).serialize();
-      var action = $('form').attr("action");
-      var posting = $.post(action, values);
 
-      posting.done(function(data) {
-        var li = document.createElement('li');
-        li.setAttribute('class', 'list-group-item')
-        li.innerHTML = `<span class="badge">${data["status"]}</span><a href="/tickets/${data["ticket_id"]}/issues/${data["id"]}">${data["title"]}</a>`;
-        $(".list-group").append(li);
-      });
-      $("#new-issue-section").text("") 
+
+<script type="text/javascript" charset="utf-8">
+
+  // New Issue Form is Serialized and Posted.  New Issue Section is cleared out.
+
+
+
+  $(function () {
+    $("#add-issue-button").on("click", function(e) {
+      $("a#add-issue-button").remove();
+      console.log(this.href)
+      $.get(this.href).success(function(response) {
+        $("#new-issue-form").html(response);
+      })
+      e.preventDefault();
     });
+
+    $(function () {
+      $('form').submit(function(e){
+        debugger;
+        var values = $(this).serialize();
+        var action = $('form').attr("action");
+        var posting = $.post(action, values);
+
+        posting.done(function(data) {
+          var li = document.createElement('li');
+          li.setAttribute('class', 'list-group-item')
+          li.innerHTML = `<span class="badge">${data["status"]}</span><a href="/tickets/${data["ticket_id"]}/issues/${data["id"]}">${data["title"]}</a>`;
+          $(".list-group").append(li);
+        });
+        $("#new-issue-section").text("")
+        e.preventDefault(); 
+      });
+    });
+
   });
 </script>

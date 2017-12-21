@@ -1,8 +1,10 @@
 <% if !@tickets.empty? %>
+  <h3>Dashboard</h3>  
   <div class="jumbotron">
     <div>
       <h4>Your current open tickets:</h4>
       <ul class="list-group" id="open-tickets"> </ul>  <!-- JSON Data is fed in via dashboard.js -->
+      <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-sm pull-right btn-success', :id=> 'new-ticket-button' %>
     </div>
   </div>
 <% else %>
