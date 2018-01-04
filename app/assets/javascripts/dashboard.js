@@ -25,3 +25,45 @@ $(document).on('turbolinks:load', function() {
   });
   
 });
+
+// Building Prototype
+
+function Ticket(attributes) {
+  this.title = attributes.title;
+  this.status = attributes.status;
+}
+
+Ticket.prototype.renderLI = function() {
+  return Ticket.template(this);
+}
+
+// $(function() {
+  // Ticket.templateSource = $("#ticket-template").html()      // Need to add template to html with id so I can reference it here
+  // Ticket.template = Handlebars.compile(Ticket.templateSource)  // Need to install Handlebars to app
+// }
+
+Ticket.formSubmit = function(e){
+  e.preventDefault();
+  var $form = $(this);
+  var action = $form.attr("action")
+  var params = $form.serialize();
+
+  $.ajax({
+    url: action,
+    data: params,
+    dataType: "json",
+    method: "POST"
+  })
+  .success(Ticket.success)
+  .error(Ticket.error)
+}
+
+Ticket.success = function(json) {
+  var ticket = new Ticket(json);
+  var ticketLi = ticket.renderLI();
+  $("#open-tickets").append(ticketLi);
+}
+
+Ticket.error = function(response) {
+  console.log("Something broke man!", response)
+}

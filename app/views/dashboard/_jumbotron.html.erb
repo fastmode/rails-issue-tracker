@@ -12,3 +12,23 @@
     <p>Welcome! Please open your first Ticket.</p>
   </div>
 <% end %>
+
+
+
+<script id="ticket-template" type="text/x-handlebars-template">
+  <li class="list-group-item">
+    <span class="badge">
+
+    </span>
+    <a href="/tickets/{{id}}">{{title}}</a>
+  </li>
+</script>
+
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
