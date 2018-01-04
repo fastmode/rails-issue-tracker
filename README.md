@@ -4,7 +4,7 @@ A simple app giving you the ability to document Tickets and add Issues.  You can
 
 Application is written in Rails. This application utilizes jQuery with a JSON API to display, render, and post data.  Handlebars is used to load up view templates.
 
-Video Demo: https://youtu.be/BesY6Pgm3HI
+Video Demo: https://youtu.be/1L-CVN6CKes
 
 ## Requirements
 
