@@ -7,23 +7,17 @@ $(document).on('turbolinks:load', function() {
   $(function () {
     $.getJSON('/tickets', function(data) {
       data.forEach(function(el){
-
+        // Create Ticket prototype
         Ticket.prototype.renderLI = function() {
           return Ticket.template(this);
         }
-        
         // Finds template in html and compiles it to Handlebars object
-        $(function(){
-          Ticket.templateSource = $("#ticket-template").html();
-          Ticket.template = Handlebars.compile(Ticket.templateSource);
-        });
-        
+        Ticket.templateSource = $("#ticket-template").html();
+        Ticket.template = Handlebars.compile(Ticket.templateSource);
         // Creates new Ticket object
         var ticket = new Ticket(el)
-
         // Takes new Ticket object and renders with with Handlebars
         var ticketLi = ticket.renderLI();
-
         // Adds newly rendered LI to HTML
         $("#open-tickets").append(ticketLi);
       });
@@ -32,6 +26,7 @@ $(document).on('turbolinks:load', function() {
 
   // Creates Ticket objects
   function Ticket(attributes) {
+    this.id = attributes.id;
     this.title = attributes.title;
     this.status = attributes.status;
     this.issue_count = attributes.issues.length;

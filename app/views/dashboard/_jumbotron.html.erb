@@ -10,6 +10,7 @@
 <% else %>
   <div class="jumbotron">
     <p>Welcome! Please open your first Ticket.</p>
+    <%= link_to "New Ticket", new_ticket_path, :class=> 'btn btn-sm pull-right btn-success', :id=> 'new-ticket-button' %>
   </div>
 <% end %>
 
