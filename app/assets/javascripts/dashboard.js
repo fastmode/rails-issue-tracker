@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  // Creates Ticket model object
+  // Creates Ticket model objects
   function Ticket(attributes) {
     this.id = attributes.id;
     this.title = attributes.title;
